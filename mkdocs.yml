@@ -21,6 +21,8 @@ theme:
   favicon: assets/images/favicon.ico
 nav:
   - Home: index.md
+  - Ansible:
+    - Ansible im Devcontainer: ansible/devcontainer.md
   - Applikationen:
       - bind9: apps/bind9.md
       - Grafana: apps/grafana.md
