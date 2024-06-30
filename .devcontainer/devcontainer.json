@@ -1,0 +1,15 @@
+{
+    "name": "MkDocs DevContainer",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "runArgs": ["--init"],
+    "settings": {},
+    "extensions": [],
+    "forwardPorts": [8000],
+    "postCreateCommand": "mkdocs serve -a 0.0.0.0:8000",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/docs,type=bind"
+    ]
+}

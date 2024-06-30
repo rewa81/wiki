@@ -1,0 +1,97 @@
+site_name: rwcloud.ch - Wiki
+theme:
+  name: 'material'
+  palette:
+    scheme: 'slate'
+    primary: red
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
+    - content.code.annotate
+    - content.code.select
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: assets/images/logo2.png
+  favicon: assets/images/favicon.ico
+nav:
+  - Home: index.md
+  - Applikationen:
+      - bind9: apps/bind9.md
+      - Grafana: apps/grafana.md
+      - Prometheus: apps/prometheus.md
+  - Datenbanken:
+    - mariadb: databases/mariadb.md
+    - mysql: databases/mysql.md
+    - postgres: databases/postgres.md
+    - sqlite: databases/sqlite.md
+  - Docker:
+    - docker-compose: docker/docker-compose.md
+    - docker-desktop: docker/docker-desktop.md
+    - docker-file: docker/docker-file.md
+    - docker: docker/docker.md
+  - Linux:
+    - Distros:
+      - Centos: linux/distros/centos.md
+      - debian: linux/distros/debian.md
+      - fedora: linux/distros/fedora.md
+      - ubuntu: linux/distros/ubuntu.md
+    - arp: linux/arp.md
+    - awk: linux/awk.md
+    - cron: linux/cron.md
+    - Umgebungsvariablen: linux/environment-variables-in-linux.md
+    - etherwake: linux/etherwake.md
+    - ethtool: linux/ethtool.md
+    - grep: linux/grep.md
+    - iptables: linux/iptables.md
+    - linux: linux/linux.md
+    - lspci: linux/lspci.md
+    - lvm2: linux/lvm2.md
+    - mount: linux/mount.md
+    - netplan: linux/netplan.md
+    - nfs: linux/nfs.md
+    - sed: linux/sed.md
+    - tailscale-hardening: linux/uff-tailscale-hardening.md
+    - ufw: linux/ufw.md
+    - user: linux/user.md
+  - macOS:
+    - shortcuts: macos/macos-shortcuts.md
+    - setup terminal: macos/setup_terminal.md
+    - sshkey-gen: macos/sshkey-gen.md
+    - VSCode Shortcuts: macos/vscode-macos-shortcuts.md
+  - Weiterbildung:
+    - HSLU:
+      - CAS Cloud-Plattform Manager: weiterbildung/hslu/cas-cloudmanager.md
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.highlight:
+      linenums: true
+      pygments_style: monokai
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  #- privacy
+extra:
+  generator: false
+    
+copyright: Copyright &copy; 2024 René Walther
