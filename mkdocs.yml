@@ -23,6 +23,8 @@ nav:
   - Home: index.md
   - Ansible:
     - Ansible im Devcontainer: ansible/devcontainer.md
+    - Ansilbe-Vault: ansible/ansible-vault.md
+    - Ansible Anwendung: ansible/ansible.md
   - Applikationen:
       - bind9: apps/bind9.md
       - Grafana: apps/grafana.md
