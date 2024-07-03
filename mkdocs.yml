@@ -3,7 +3,7 @@ theme:
   name: 'material'
   palette:
     scheme: 'slate'
-    primary: red
+    primary: light green
   features:
     - navigation.expand
     - navigation.sections
@@ -17,7 +17,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/images/logo2.png
+  logo: assets/images/logo3.png
   favicon: assets/images/favicon.ico
 nav:
   - Home: index.md
