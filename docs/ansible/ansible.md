@@ -1,6 +1,25 @@
 # Stuktur und Aufbau des Repos
 
-
+```
+ansible-devcontainer/
+├── .devcontainer/
+├── .secrets/
+├── inventory/
+│   ├── group_vars/
+│   ├── host_vars/
+│   │   ├── vie.yml
+│   │   └── parallels.yml
+│   └── hosts.yml
+├── playbooks/
+│   └── test_connection.yml
+├── roles/
+├── .gitignore
+├── inventory-vie.yml
+├── readme.md
+├── rwcloud.vault_pass
+├── vault.yml
+└── vie-playbook.yml
+```
 
 
 # Ansible ausführen

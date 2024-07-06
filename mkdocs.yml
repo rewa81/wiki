@@ -3,28 +3,33 @@ theme:
   name: 'material'
   palette:
     scheme: 'slate'
-    primary: light green
+    primary: green
+  language: de
   features:
     - navigation.expand
     - navigation.sections
     - navigation.tabs
     - toc.integrate
-    - content.code.annotate
+    - content.code.annotation
     - content.code.select
     - content.code.copy
     - content.tabs.link
     - navigation.footer
+    - search.suggest
+    - search.highlight
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/images/logo3.png
-  favicon: assets/images/favicon.ico
+  #logo: assets/images/logo3.png
+  #favicon: assets/images/favicon.ico
 nav:
   - Home: index.md
   - Ansible:
     - Ansible im Devcontainer: ansible/devcontainer.md
     - Ansilbe-Vault: ansible/ansible-vault.md
     - Ansible Anwendung: ansible/ansible.md
+  - AI/Ollama:
+    - Ollama: ai/ollama.md
   - Applikationen:
       - bind9: apps/bind9.md
       - Grafana: apps/grafana.md
@@ -68,9 +73,9 @@ nav:
     - setup terminal: macos/setup_terminal.md
     - sshkey-gen: macos/sshkey-gen.md
     - VSCode Shortcuts: macos/vscode-macos-shortcuts.md
-  - Weiterbildung:
-    - HSLU:
-      - CAS Cloud-Plattform Manager: weiterbildung/hslu/cas-cloudmanager.md
+  #- Weiterbildung:
+  #  - HSLU:
+  #    - CAS Cloud-Plattform Manager: weiterbildung/hslu/cas-cloudmanager.md
 markdown_extensions:
   - abbr
   - admonition
@@ -91,6 +96,9 @@ markdown_extensions:
       generic: true
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - search

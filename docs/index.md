@@ -1,30 +1,5 @@
-# Welcome to MkDocs
+# Willkommen auf rwcloud.ch Wiki
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Dieses Wiki beinhaltet eine Themen rund Themen wie Hosting und Betrieb von Homlab Servies wie Docker, Ansible und AI. In diesem Wiki dokumentiere ich mein Wissen über verschiedene Tehmen. 
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs gh-deploy` - Deploy documentation to GitHub Pages.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
-## Diagramm
-
-Test
-
-``` mermaid
-graph LR
-  A[Start] --> B{Error?};
-  B -->|Yes| C[Hmm...];
-  C --> D[Debug];
-  D --> B;
-  B ---->|No| E[Yay!];
-```
+Es wird keine Garantie auf Korrektheit gegeben.
