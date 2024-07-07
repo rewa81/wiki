@@ -9,6 +9,6 @@ im Hauptverzeichnis des Repos eine Datei xxxx.vault_pass anlegen (xxxx mit belie
 Um eine Variable mit Ansible-Vault zu verschlüsseln kann folgender Befehl verwendet werden:
 
 ``` sh title="Beispiel Passwort verschlüsseln"
-ansible-vault encrypt_string --vault-id rwcloud@rwcloud.vault_pass --encrypt-vault-id rwcloud 'Ki3lahTh' --name 'support_user_password'
+ansible-vault encrypt_string --vault-id [deine-vaultid]@.vault_pass --encrypt-vault-id [deine-vaultid] 'dein passwort' --name 'ansibe-variabelen-name'
 ```
 Damit wird vür die vault rwcloud mit der Password-Datei rwcloud.vault_pass das Passwort Ki3lahTh verschlüsselt.
