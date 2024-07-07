@@ -1,0 +1,2424 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../arp/">
+      
+      
+        <link rel="next" href="../cron/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>awk - rwcloud.ch - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#awk" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../.." title="rwcloud.ch - Wiki" class="md-header__button md-logo" aria-label="rwcloud.ch - Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rwcloud.ch - Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              awk
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ansible/devcontainer/" class="md-tabs__link">
+          
+  
+  Ansible
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai/ollama/" class="md-tabs__link">
+          
+  
+  AI/Ollama
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../apps/bind9/" class="md-tabs__link">
+          
+  
+  Applikationen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../databases/mariadb/" class="md-tabs__link">
+          
+  
+  Datenbanken
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docker/docker-compose/" class="md-tabs__link">
+          
+  
+  Docker
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../distros/centos/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../macos/macos-shortcuts/" class="md-tabs__link">
+          
+  
+  macOS
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="rwcloud.ch - Wiki" class="md-nav__button md-logo" aria-label="rwcloud.ch - Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    rwcloud.ch - Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ansible
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ansible
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/devcontainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible im Devcontainer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/ansible-vault/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansilbe-Vault
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible Anwendung
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI/Ollama
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI/Ollama
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ollama
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Applikationen
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Applikationen
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/bind9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bind9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/grafana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/prometheus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prometheus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Datenbanken
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datenbanken
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/mariadb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mariadb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-desktop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-desktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-file/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-file
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Distros
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Distros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distros/centos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distros/debian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    debian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distros/fedora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fedora
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distros/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    arp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    awk
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    awk
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unixlinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unix/Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doswin" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOS/Win
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handy-one-line-awk-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handy one-line Awk scripts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handy one-line Awk scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Spacing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numbering-and-calculations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Numbering and Calculations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      String Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-conversion-and-substitution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Conversion and Substitution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selective-printing-of-certain-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selective Printing of Certain Lines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selective-deletion-of-certain-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selective Deletion of Certain Lines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cron
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables-in-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Umgebungsvariablen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherwake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etherwake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ethtool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ethtool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    grep
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iptables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lspci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lspci
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lvm2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lvm2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netplan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    netplan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uff-tailscale-hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tailscale-hardening
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ufw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ufw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    user
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            macOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/macos-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/setup_terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    setup terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/sshkey-gen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sshkey-gen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/vscode-macos-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="awk">AWK</h1>
+<p>AWK (awk) is a domain-specific language designed for text processing and typically used as a data extraction and reporting tool. Similar to the <strong><a href="sed">Sed</a></strong> and <strong><a href="grep">Grep</a></strong> commands, it is a filter, and is a standard feature of most Unix-like operating systems, like <strong><a href="linux">Linux</a></strong>.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="unixlinux">Unix/Linux</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;/pattern/ {print &quot;$1&quot;}&#39;</span><span class="w">    </span><span class="c1"># standard Unix shells</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="doswin">DOS/Win</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;/pattern/ {print &quot;$1&quot;}&#39;</span><span class="w">    </span><span class="c1"># compiled with DJGPP, Cygwin</span>
+awk<span class="w"> </span><span class="s2">&quot;/pattern/ {print \&quot;</span><span class="nv">$1</span><span class="s2">\&quot;}&quot;</span><span class="w">  </span><span class="c1"># GnuWin32, UnxUtils, Mingw</span>
+</code></pre></div></td></tr></table></div>
+<p>Note that the DJGPP compilation (for DOS or Windows-32) permits an awk
+script to follow Unix quoting syntax <code>'/like/ {"this"}'</code>. HOWEVER, if the
+command interpreter is <code>CMD.EXE</code> or <code>COMMAND.COM</code>, single quotes will not
+protect the redirection arrows <code>(&lt;, &gt;)</code> nor do they protect pipes <code>(|)</code>.
+These are special symbols which require "double quotes" to protect them
+from interpretation as operating system directives. If the command
+interpreter is bash, ksh, zsh or another Unix shell, then single and double
+quotes will follow the standard Unix usage.</p>
+<p>Users of MS-DOS or Microsoft Windows must remember that the percent
+sign <code>(%)</code> is used to indicate environment variables, so this symbol must
+be doubled <code>(%%)</code> to yield a single percent sign visible to awk.</p>
+<p>To conserve space, use <code>'1'</code> instead of <code>'{print}'</code> to print each line.
+Either one will work.</p>
+<h2 id="handy-one-line-awk-scripts">Handy one-line Awk scripts</h2>
+<h3 id="file-spacing">File Spacing</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># double space a file</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;1;{print &quot;&quot;}&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN{ORS=&quot;\n\n&quot;};1&#39;</span>
+
+<span class="w"> </span><span class="c1"># double space a file which already has blank lines in it. Output file</span>
+<span class="w"> </span><span class="c1"># should contain no more than one blank line between lines of text.</span>
+<span class="w"> </span><span class="c1"># NOTE: On Unix systems, DOS lines which have only CRLF (\r\n) are</span>
+<span class="w"> </span><span class="c1"># often treated as non-blank, and thus &#39;NF&#39; alone will return TRUE.</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NF{print $0 &quot;\n&quot;}&#39;</span>
+
+<span class="w"> </span><span class="c1"># triple space a file</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;1;{print &quot;\n&quot;}&#39;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="numbering-and-calculations">Numbering and Calculations</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># precede each line by its line number FOR THAT FILE (left alignment).</span>
+<span class="w"> </span><span class="c1"># Using a tab (\t) instead of space will preserve margins.</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print FNR &quot;\t&quot; $0}&#39;</span><span class="w"> </span>files*
+
+<span class="w"> </span><span class="c1"># precede each line by its line number FOR ALL FILES TOGETHER, with tab.</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print NR &quot;\t&quot; $0}&#39;</span><span class="w"> </span>files*
+
+<span class="w"> </span><span class="c1"># number each line of a file (number on left, right-aligned)</span>
+<span class="w"> </span><span class="c1"># Double the percent signs if typing from the DOS command prompt.</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf(&quot;%5d : %s\n&quot;, NR,$0)}&#39;</span>
+
+<span class="w"> </span><span class="c1"># number each line of file, but only print numbers if line is not blank</span>
+<span class="w"> </span><span class="c1"># Remember caveats about Unix treatment of \r (mentioned above)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NF{$0=++a &quot; :&quot; $0};1&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print (NF? ++a &quot; :&quot; :&quot;&quot;) $0}&#39;</span>
+
+<span class="w"> </span><span class="c1"># count lines (emulates &quot;wc -l&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;END{print NR}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the sums of the fields of every line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{s=0; for (i=1; i&lt;=NF; i++) s=s+$i; print s}&#39;</span>
+
+<span class="w"> </span><span class="c1"># add all fields in all lines and print the sum</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{for (i=1; i&lt;=NF; i++) s=s+$i}; END{print s}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print every line after replacing each field with its absolute value</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{for (i=1; i&lt;=NF; i++) if ($i &lt; 0) $i = -$i; print }&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{for (i=1; i&lt;=NF; i++) $i = ($i &lt; 0) ? -$i : $i; print }&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the total number of fields (&quot;words&quot;) in all lines</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ total = total + NF }; END {print total}&#39;</span><span class="w"> </span>file
+
+<span class="w"> </span><span class="c1"># print the total number of lines that contain &quot;Beth&quot;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/Beth/{n++}; END {print n+0}&#39;</span><span class="w"> </span>file
+
+<span class="w"> </span><span class="c1"># print the largest first field and the line that contains it</span>
+<span class="w"> </span><span class="c1"># Intended for finding the longest string in field #1</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$1 &gt; max {max=$1; maxline=$0}; END{ print max, maxline}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the number of fields in each line, followed by the line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ print NF &quot;:&quot; $0 } &#39;</span>
+
+<span class="w"> </span><span class="c1"># print the last field of each line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ print $NF }&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the last field of the last line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ field = $NF }; END{ print field }&#39;</span>
+
+<span class="w"> </span><span class="c1"># print every line with more than 4 fields</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NF &gt; 4&#39;</span>
+
+<span class="w"> </span><span class="c1"># print every line where the value of the last field is &gt; 4</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$NF &gt; 4&#39;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="string-creation">String Creation</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># create a string of a specific length (e.g., generate 513 spaces)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN{while (a++&lt;513) s=s &quot; &quot;; print s}&#39;</span>
+
+<span class="w"> </span><span class="c1"># insert a string of specific length at a certain character position</span>
+<span class="w"> </span><span class="c1"># Example: insert 49 spaces after column #6 of each input line.</span>
+<span class="w"> </span>gawk<span class="w"> </span>--re-interval<span class="w"> </span><span class="s1">&#39;BEGIN{while(a++&lt;49)s=s &quot; &quot;};{sub(/^.{6}/,&quot;&amp;&quot; s)};1&#39;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="array-creation">Array Creation</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># These next 2 entries are not one-line scripts, but the technique</span>
+<span class="w"> </span><span class="c1"># is so handy that it merits inclusion here.</span>
+
+<span class="w"> </span><span class="c1"># create an array named &quot;month&quot;, indexed by numbers, so that month[1]</span>
+<span class="w"> </span><span class="c1"># is &#39;Jan&#39;, month[2] is &#39;Feb&#39;, month[3] is &#39;Mar&#39; and so on.</span>
+<span class="w"> </span>split<span class="o">(</span><span class="s2">&quot;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&quot;</span>,<span class="w"> </span>month,<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="o">)</span>
+
+<span class="w"> </span><span class="c1"># create an array named &quot;mdigit&quot;, indexed by strings, so that</span>
+<span class="w"> </span><span class="c1"># mdigit[&quot;Jan&quot;] is 1, mdigit[&quot;Feb&quot;] is 2, etc. Requires &quot;month&quot; array</span>
+<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i&lt;<span class="o">=</span><span class="m">12</span><span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span>mdigit<span class="o">[</span>month<span class="o">[</span>i<span class="o">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>i
+</code></pre></div></td></tr></table></div>
+<h3 id="text-conversion-and-substitution">Text Conversion and Substitution</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># IN UNIX ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/\r$/,&quot;&quot;)};1&#39;</span><span class="w">   </span><span class="c1"># assumes EACH line ends with Ctrl-M</span>
+
+<span class="w"> </span><span class="c1"># IN UNIX ENVIRONMENT: convert Unix newlines (LF) to DOS format</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/$/,&quot;\r&quot;)};1&#39;</span>
+
+<span class="w"> </span><span class="c1"># IN DOS ENVIRONMENT: convert Unix newlines (LF) to DOS format</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="m">1</span>
+
+<span class="w"> </span><span class="c1"># IN DOS ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format</span>
+<span class="w"> </span><span class="c1"># Cannot be done with DOS versions of awk, other than gawk:</span>
+<span class="w"> </span>gawk<span class="w"> </span>-v<span class="w"> </span><span class="nv">BINMODE</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span>infile<span class="w"> </span>&gt;outfile
+
+<span class="w"> </span><span class="c1"># Use &quot;tr&quot; instead.</span>
+<span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="se">\r</span><span class="w"> </span>&lt;infile<span class="w"> </span>&gt;outfile<span class="w">            </span><span class="c1"># GNU tr version 1.22 or higher</span>
+
+<span class="w"> </span><span class="c1"># delete leading whitespace (spaces, tabs) from front of each line</span>
+<span class="w"> </span><span class="c1"># aligns all text flush left</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/^[ \t]+/, &quot;&quot;)};1&#39;</span>
+
+<span class="w"> </span><span class="c1"># delete trailing whitespace (spaces, tabs) from end of each line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/[ \t]+$/, &quot;&quot;)};1&#39;</span>
+
+<span class="w"> </span><span class="c1"># delete BOTH leading and trailing whitespace from each line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{gsub(/^[ \t]+|[ \t]+$/,&quot;&quot;)};1&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{$1=$1};1&#39;</span><span class="w">           </span><span class="c1"># also removes extra space between fields</span>
+
+<span class="w"> </span><span class="c1"># insert 5 blank spaces at beginning of each line (make page offset)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/^/, &quot;     &quot;)};1&#39;</span>
+
+<span class="w"> </span><span class="c1"># align all text flush right on a 79-column width</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf &quot;%79s\n&quot;, $0}&#39;</span><span class="w"> </span>file*
+
+<span class="w"> </span><span class="c1"># center all text on a 79-character width</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{l=length();s=int((79-l)/2); printf &quot;%&quot;(s+l)&quot;s\n&quot;,$0}&#39;</span><span class="w"> </span>file*
+
+<span class="w"> </span><span class="c1"># substitute (find and replace) &quot;foo&quot; with &quot;bar&quot; on each line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{sub(/foo/,&quot;bar&quot;)}; 1&#39;</span><span class="w">           </span><span class="c1"># replace only 1st instance</span>
+<span class="w"> </span>gawk<span class="w"> </span><span class="s1">&#39;{$0=gensub(/foo/,&quot;bar&quot;,4)}; 1&#39;</span><span class="w">  </span><span class="c1"># replace only 4th instance</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{gsub(/foo/,&quot;bar&quot;)}; 1&#39;</span><span class="w">          </span><span class="c1"># replace ALL instances in a line</span>
+
+<span class="w"> </span><span class="c1"># substitute &quot;foo&quot; with &quot;bar&quot; ONLY for lines which contain &quot;baz&quot;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/baz/{gsub(/foo/, &quot;bar&quot;)}; 1&#39;</span>
+
+<span class="w"> </span><span class="c1"># substitute &quot;foo&quot; with &quot;bar&quot; EXCEPT for lines which contain &quot;baz&quot;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;!/baz/{gsub(/foo/, &quot;bar&quot;)}; 1&#39;</span>
+
+<span class="w"> </span><span class="c1"># change &quot;scarlet&quot; or &quot;ruby&quot; or &quot;puce&quot; to &quot;red&quot;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{gsub(/scarlet|ruby|puce/, &quot;red&quot;)}; 1&#39;</span>
+
+<span class="w"> </span><span class="c1"># reverse order of lines (emulates &quot;tac&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{a[i++]=$0} END {for (j=i-1; j&gt;=0;) print a[j--] }&#39;</span><span class="w"> </span>file*
+
+<span class="w"> </span><span class="c1"># if a line ends with a backslash, append the next line to it (fails if</span>
+<span class="w"> </span><span class="c1"># there are multiple lines ending with backslash...)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/\\$/ {sub(/\\$/,&quot;&quot;); getline t; print $0 t; next}; 1&#39;</span><span class="w"> </span>file*
+
+<span class="w"> </span><span class="c1"># print and sort the login names of all users</span>
+<span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="w"> </span><span class="s1">&#39;{print $1 | &quot;sort&quot; }&#39;</span><span class="w"> </span>/etc/passwd
+
+<span class="w"> </span><span class="c1"># print the first 2 fields, in opposite order, of every line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2, $1}&#39;</span><span class="w"> </span>file
+
+<span class="w"> </span><span class="c1"># switch the first 2 fields of every line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{temp = $1; $1 = $2; $2 = temp}&#39;</span><span class="w"> </span>file
+
+<span class="w"> </span><span class="c1"># print every line, deleting the second field of that line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ $2 = &quot;&quot;; print }&#39;</span>
+
+<span class="w"> </span><span class="c1"># print in reverse order the fields of every line</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{for (i=NF; i&gt;0; i--) printf(&quot;%s &quot;,$i);print &quot;&quot;}&#39;</span><span class="w"> </span>file
+
+<span class="w"> </span><span class="c1"># concatenate every 5 lines of input, using a comma separator</span>
+<span class="w"> </span><span class="c1"># between fields</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;ORS=NR%5?&quot;,&quot;:&quot;\n&quot;&#39;</span><span class="w"> </span>file
+</code></pre></div></td></tr></table></div>
+<h3 id="selective-printing-of-certain-lines">Selective Printing of Certain Lines</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># print first 10 lines of file (emulates behavior of &quot;head&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR &lt; 11&#39;</span>
+
+<span class="w"> </span><span class="c1"># print first line of file (emulates &quot;head -1&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR&gt;1{exit};1&#39;</span>
+
+<span class="w">  </span><span class="c1"># print the last 2 lines of a file (emulates &quot;tail -2&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{y=x &quot;\n&quot; $0; x=$0};END{print y}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the last line of a file (emulates &quot;tail -1&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;END{print}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print only lines which match regular expression (emulates &quot;grep&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/&#39;</span>
+
+<span class="w"> </span><span class="c1"># print only lines which do NOT match regex (emulates &quot;grep -v&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;!/regex/&#39;</span>
+
+<span class="w"> </span><span class="c1"># print any line where field #5 is equal to &quot;abc123&quot;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$5 == &quot;abc123&quot;&#39;</span>
+
+<span class="w"> </span><span class="c1"># print only those lines where field #5 is NOT equal to &quot;abc123&quot;</span>
+<span class="w"> </span><span class="c1"># This will also print lines which have less than 5 fields.</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$5 != &quot;abc123&quot;&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;!($5 == &quot;abc123&quot;)&#39;</span>
+
+<span class="w"> </span><span class="c1"># matching a field against a regular expression</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$7  ~ /^[a-f]/&#39;</span><span class="w">    </span><span class="c1"># print line if field #7 matches regex</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$7 !~ /^[a-f]/&#39;</span><span class="w">    </span><span class="c1"># print line if field #7 does NOT match regex</span>
+
+<span class="w"> </span><span class="c1"># print the line immediately before a regex, but not the line</span>
+<span class="w"> </span><span class="c1"># containing the regex</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/{print x};{x=$0}&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/{print (NR==1 ? &quot;match on line 1&quot; : x)};{x=$0}&#39;</span>
+
+<span class="w"> </span><span class="c1"># print the line immediately after a regex, but not the line</span>
+<span class="w"> </span><span class="c1"># containing the regex</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/{getline;print}&#39;</span>
+
+<span class="w"> </span><span class="c1"># grep for AAA and BBB and CCC (in any order on the same line)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/AAA/ &amp;&amp; /BBB/ &amp;&amp; /CCC/&#39;</span>
+
+<span class="w"> </span><span class="c1"># grep for AAA and BBB and CCC (in that order)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/AAA.*BBB.*CCC/&#39;</span>
+
+<span class="w"> </span><span class="c1"># print only lines of 65 characters or longer</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;length &gt; 64&#39;</span>
+
+<span class="w"> </span><span class="c1"># print only lines of less than 65 characters</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;length &lt; 64&#39;</span>
+
+<span class="w"> </span><span class="c1"># print section of file from regular expression to end of file</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/,0&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/regex/,EOF&#39;</span>
+
+<span class="w"> </span><span class="c1"># print section of file based on line numbers (lines 8-12, inclusive)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR==8,NR==12&#39;</span>
+
+<span class="w"> </span><span class="c1"># print line number 52</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR==52&#39;</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR==52 {print;exit}&#39;</span><span class="w">          </span><span class="c1"># more efficient on large files</span>
+
+<span class="w"> </span><span class="c1"># print section of file between two regular expressions (inclusive)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/Iowa/,/Montana/&#39;</span><span class="w">             </span><span class="c1"># case sensitive</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="selective-deletion-of-certain-lines">Selective Deletion of Certain Lines</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="c1"># delete ALL blank lines from a file (same as &quot;grep &#39;.&#39; &quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span>NF
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/./&#39;</span>
+
+<span class="w"> </span><span class="c1"># remove duplicate, consecutive lines (emulates &quot;uniq&quot;)</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;a !~ $0; {a=$0}&#39;</span>
+
+<span class="w"> </span><span class="c1"># remove duplicate, nonconsecutive lines</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;!a[$0]++&#39;</span><span class="w">                     </span><span class="c1"># most concise script</span>
+<span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;!($0 in a){a[$0];print}&#39;</span><span class="w">      </span><span class="c1"># most efficient script</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="references">References</h2>
+<p>For additional syntax instructions, including the way to apply editing
+commands from a disk file instead of the command line, consult:</p>
+<p>"sed &amp; awk, 2nd Edition," by Dale Dougherty and Arnold Robbins
+  (O'Reilly, 1997)</p>
+<p>"UNIX Text Processing," by Dale Dougherty and Tim O'Reilly (Hayden
+  Books, 1987)</p>
+<p>"GAWK: Effective awk Programming," 3d edition, by Arnold D. Robbins
+  (O'Reilly, 2003) or at http://www.gnu.org/software/gawk/manual/</p>
+<p>To fully exploit the power of awk, one must understand "regular
+expressions." For detailed discussion of regular expressions, see
+"Mastering Regular Expressions, 3d edition" by Jeffrey Friedl (O'Reilly,
+2006).</p>
+<p>The info and manual ("man") pages on Unix systems may be helpful (try
+"man awk", "man nawk", "man gawk", "man regexp", or the section on
+regular expressions in "man ed").</p>
+<p>USE OF '\t' IN awk SCRIPTS: For clarity in documentation, I have used
+'\t' to indicate a tab character (0x09) in the scripts.  All versions of
+awk should recognize this abbreviation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../arp/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: arp">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                arp
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cron/" class="md-footer__link md-footer__link--next" aria-label="Weiter: cron">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                cron
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 rwcloud.ch
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.tabs", "toc.integrate", "content.code.annotation", "content.code.select", "content.code.copy", "content.tabs.link", "navigation.footer", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

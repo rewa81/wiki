@@ -1,0 +1,2139 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mysql/">
+      
+      
+        <link rel="next" href="../sqlite/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>postgres - rwcloud.ch - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#postgresql-cheat-sheet" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../.." title="rwcloud.ch - Wiki" class="md-header__button md-logo" aria-label="rwcloud.ch - Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rwcloud.ch - Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              postgres
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ansible/devcontainer/" class="md-tabs__link">
+          
+  
+  Ansible
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai/ollama/" class="md-tabs__link">
+          
+  
+  AI/Ollama
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../apps/bind9/" class="md-tabs__link">
+          
+  
+  Applikationen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../mariadb/" class="md-tabs__link">
+          
+  
+  Datenbanken
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docker/docker-compose/" class="md-tabs__link">
+          
+  
+  Docker
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/distros/centos/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../macos/macos-shortcuts/" class="md-tabs__link">
+          
+  
+  macOS
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="rwcloud.ch - Wiki" class="md-nav__button md-logo" aria-label="rwcloud.ch - Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    rwcloud.ch - Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ansible
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ansible
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/devcontainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible im Devcontainer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/ansible-vault/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansilbe-Vault
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible Anwendung
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI/Ollama
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI/Ollama
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ollama
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Applikationen
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Applikationen
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/bind9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bind9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/grafana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apps/prometheus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prometheus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Datenbanken
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datenbanken
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mariadb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mariadb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    postgres
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-postgresql-on-debianubuntumintzorinforks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install PostgreSQL on Debian/Ubuntu/Mint/Zorin/forks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-postgresql-on-rhelfedoracentosalmarocky" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install PostgreSQL on RHEL/Fedora/CentOS/Alma/Rocky
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-postgresql-on-archmanjaroarcoforks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install PostgreSQL on Arch/Manjaro/Arco/forks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-postgresql-in-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy PostgreSQL in Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-postgresql-on-kubernetes-with-zalando-postgres-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy PostgreSQL on Kubernetes with Zalando Postgres Operator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-postgres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to Postgres
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to Postgres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-local-postgres-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to local Postgres instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-remote-postgres-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to remote Postgres instance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-password-for-postgres-database-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set password for postgres database user
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set password for postgres database user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-pg_hbaconf-to-allow-postgres-user-connections-with-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update pg_hba.conf to allow postgres user connections with password
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation-of-additional-database-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creation of additional database users
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation-of-additional-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creation of additional databases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup and Restore
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup and Restore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pg_dump-pg_dumpall" class="md-nav__link">
+    <span class="md-ellipsis">
+      pg_dump / pg_dumpall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pg_dump / pg_dumpall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pg_dump" class="md-nav__link">
+    <span class="md-ellipsis">
+      pg_dump
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_dumpall" class="md-nav__link">
+    <span class="md-ellipsis">
+      pg_dumpall
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      pg_restore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-desktop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-desktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker-file/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-file
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Distros
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Distros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distros/centos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distros/debian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    debian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distros/fedora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fedora
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distros/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    arp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/awk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    awk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cron
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/environment-variables-in-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Umgebungsvariablen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/etherwake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    etherwake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ethtool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ethtool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/grep/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    grep
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/iptables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iptables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/lspci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lspci
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/lvm2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lvm2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/mount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/netplan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    netplan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nfs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/uff-tailscale-hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tailscale-hardening
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ufw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ufw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    user
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            macOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/macos-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/setup_terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    setup terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/sshkey-gen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sshkey-gen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../macos/vscode-macos-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="postgresql-cheat-sheet">PostgreSQL Cheat-Sheet</h1>
+<p><a href="https://www.postgresql.org/">PostgreSQL</a> or also known as Postgres, is a free and open-source relational database management system. PostgreSQL features transactions with Atomicity, Consistency, Isolation, Durability (ACID) properties automatically updatable views, materialized views, triggers, foreign keys, and stored procedures. It is designed to handle a range of workloads, from single machines to data warehouses or web services with many concurrent users.</p>
+<hr />
+<h2 id="installation">Installation</h2>
+<h3 id="install-postgresql-on-debianubuntumintzorinforks">Install PostgreSQL on Debian/Ubuntu/Mint/Zorin/forks</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>postgresql<span class="w"> </span>postgresql-contrib<span class="w"> </span>postgresql-client
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>postgresql.service
+</code></pre></div></td></tr></table></div>
+<h3 id="install-postgresql-on-rhelfedoracentosalmarocky">Install PostgreSQL on RHEL/Fedora/CentOS/Alma/Rocky</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>update
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>postgresql-server
+</code></pre></div></td></tr></table></div>
+<h3 id="install-postgresql-on-archmanjaroarcoforks">Install PostgreSQL on Arch/Manjaro/Arco/forks</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syyu
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>postgresql<span class="w"> </span>--noconfirm
+</code></pre></div></td></tr></table></div>
+<h3 id="deploy-postgresql-in-docker">Deploy PostgreSQL in Docker</h3>
+<ul>
+<li><a href="https://hub.docker.com/_/postgres/">https://hub.docker.com/_/postgres/</a></li>
+<li><a href="https://github.com/postgres/postgres">https://github.com/postgres/postgres</a></li>
+</ul>
+<h3 id="deploy-postgresql-on-kubernetes-with-zalando-postgres-operator">Deploy PostgreSQL on Kubernetes with Zalando Postgres Operator</h3>
+<p>Postgres is probably the database which is most common on Cloud platforms and also, running on Kubernetes environments. There are several so called "Kubernetes Operators" which handle the deployment of Postgres clusters for you. One of it is the <a href="https://github.com/zalando/postgres-operator">Postgres Operator by Zalando</a>.</p>
+<p>You can find some tutorials regarding deployment of the operator and how to work with it, in the link list below:</p>
+<ul>
+<li><a href="https://thedatabaseme.de/2022/03/13/keep-the-elefants-in-line-deploy-zalando-operator-on-your-kubernetes-cluster/">Deploy Zalando Postgres Operator on your Kubernetes cluster</a></li>
+<li><a href="https://thedatabaseme.de/2022/03/26/backup-to-s3-configure-zalando-postgres-operator-backup-with-wal-g/">Configure Zalando Postgres Operator Backup with WAL-G</a></li>
+<li><a href="https://thedatabaseme.de/2022/05/03/restore-and-clone-from-s3-configure-zalando-postgres-operator-restore-with-wal-g/">Configure Zalando Postgres Operator Restore with WAL-G</a></li>
+</ul>
+<hr />
+<h2 id="connecting-to-postgres">Connecting to Postgres</h2>
+<h3 id="connect-to-local-postgres-instance">Connect to local Postgres instance</h3>
+<p>A local connection (from the database server) can be done by the following command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql
+</code></pre></div></td></tr></table></div>
+<h3 id="connect-to-remote-postgres-instance">Connect to remote Postgres instance</h3>
+<p>Note, that you first have to install the <code>postgresql-client</code> package, (<code>postgresql</code> via Homebrew on macOS) on the client machine. A connection from a remote host can be done by the following command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>psql<span class="w"> </span>-h<span class="w"> </span><span class="o">{</span>pg_host<span class="o">}</span><span class="w"> </span>-U<span class="w"> </span><span class="o">{</span>username<span class="o">}</span><span class="w"> </span>-d<span class="w"> </span><span class="o">{</span>database<span class="o">}</span><span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>port<span class="o">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="set-password-for-postgres-database-user">Set password for postgres database user</h2>
+<p>The password for the <code>postgres</code> database user can be set the the quickcommand <code>\password</code> or by <code>alter user postgres password 'Supersecret'</code>. A connection using the <code>postgres</code> user is still not possible from the "outside" hence to the default settings in the <code>pg_hba.conf</code>.</p>
+<h3 id="update-pg_hbaconf-to-allow-postgres-user-connections-with-password">Update pg_hba.conf to allow postgres user connections with password</h3>
+<p>In order to allow connections of the <code>postgres</code> database user not using OS user authentication, you have to update the <code>pg_hba.conf</code> which can be found under <code>/etc/postgresql/12/main/pg_hba.conf</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>vi<span class="w"> </span>/etc/postgresql/12/main/pg_hba.conf
+
+...
+<span class="nb">local</span><span class="w">   </span>all<span class="w">             </span>postgres<span class="w">                                </span>peer
+...
+</code></pre></div></td></tr></table></div>
+<p>Change the last section of the above line to <code>md5</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">local</span><span class="w">   </span>all<span class="w">             </span>postgres<span class="w">                                </span>md5
+</code></pre></div></td></tr></table></div>
+<p>A restart is required in order to apply the new configuration:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>postgresql
+</code></pre></div></td></tr></table></div>
+<p>Now a connection from outside the database host is possible e.g.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>psql<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>-d<span class="w"> </span>postgres<span class="w"> </span>-h<span class="w"> </span>databasehostname
+</code></pre></div></td></tr></table></div>
+<h2 id="creation-of-additional-database-users">Creation of additional database users</h2>
+<p>A database user can be created by the following command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">myuser</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">encrypted</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="s1">&#39;Supersecret&#39;</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span>
+
+<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="err">\</span><span class="n">du</span>
+<span class="w">                                   </span><span class="n">List</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">roles</span>
+<span class="w"> </span><span class="k">Role</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w">                         </span><span class="n">Attributes</span><span class="w">                         </span><span class="o">|</span><span class="w"> </span><span class="n">Member</span><span class="w"> </span><span class="k">of</span>
+<span class="c1">-----------+------------------------------------------------------------+-----------</span>
+<span class="w"> </span><span class="n">myuser</span><span class="w">    </span><span class="o">|</span><span class="w">                                                            </span><span class="o">|</span><span class="w"> </span><span class="err">{}</span>
+<span class="w"> </span><span class="n">postgres</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Superuser</span><span class="p">,</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="k">role</span><span class="p">,</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="n">DB</span><span class="p">,</span><span class="w"> </span><span class="n">Replication</span><span class="p">,</span><span class="w"> </span><span class="n">Bypass</span><span class="w"> </span><span class="n">RLS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">{}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="creation-of-additional-databases">Creation of additional databases</h2>
+<p>One can create new Postgres databases within an instance. Therefore you can use the <code>psql</code> command to login (see above).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">dbname</span><span class="w"> </span><span class="k">OWNER</span><span class="w"> </span><span class="n">myuser</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span>
+
+<span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="err">\</span><span class="n">l</span>
+<span class="w">                                  </span><span class="n">List</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">databases</span>
+<span class="w">   </span><span class="n">Name</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="k">Owner</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">Encoding</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="k">Collate</span><span class="w">   </span><span class="o">|</span><span class="w">    </span><span class="n">Ctype</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="k">Access</span><span class="w"> </span><span class="k">privileges</span>
+<span class="c1">-----------+----------+----------+-------------+-------------+-----------------------</span>
+<span class="w"> </span><span class="n">dbname</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">myuser</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">UTF8</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span>
+<span class="w"> </span><span class="n">postgres</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">UTF8</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span>
+<span class="w"> </span><span class="n">template0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">UTF8</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">=</span><span class="k">c</span><span class="o">/</span><span class="n">postgres</span><span class="w">          </span><span class="o">+</span>
+<span class="w">           </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">postgres</span><span class="o">=</span><span class="n">CTc</span><span class="o">/</span><span class="n">postgres</span>
+<span class="w"> </span><span class="n">template1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">UTF8</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">=</span><span class="k">c</span><span class="o">/</span><span class="n">postgres</span><span class="w">          </span><span class="o">+</span>
+<span class="w">           </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">postgres</span><span class="o">=</span><span class="n">CTc</span><span class="o">/</span><span class="n">postgres</span>
+</code></pre></div></td></tr></table></div>
+<p>You can leave the <code>OWNER</code> section of the command, when doing so, the current user will become owner of the newly created database.</p>
+<p>To change the owner of an existing database later, you can use the following command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">postgres</span><span class="o">=#</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">dbname</span><span class="w"> </span><span class="k">owner</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">myuser</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="backup-and-restore">Backup and Restore</h2>
+<p>There are near to endless combinations in tools and parameters to backup postgres databases. Below you can find some examples using the Postgres built-in tools <code>pgdump</code>, <code>pg_basebackup</code> and <code>pg_restore</code>.</p>
+<h3 id="pg_dump-pg_dumpall">pg_dump / pg_dumpall</h3>
+<p>Using <code>pg_dump</code> or <code>pg_dumpall</code> enables you to extract / export a PostgreSQL database(s) into a (SQL) script file or a custom archive file.</p>
+<h4 id="pg_dump">pg_dump</h4>
+<p>The following command creates a custom archive file from a database specified with <code>-d</code>. To export data in custom format, you have to specify so with the <code>-F c</code> option. Custom file dumps have the benefit, that they are compressed by default.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>Using<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>--create<span class="sb">`</span><span class="w"> </span>option<span class="w"> </span>will<span class="w"> </span>include<span class="w"> </span>the<span class="w"> </span>SQL<span class="w"> </span>commands<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>dump<span class="w"> </span>script<span class="w"> </span>that<span class="w"> </span>will<span class="w"> </span>create<span class="w"> </span>the<span class="w"> </span>database<span class="w"> </span>before<span class="w"> </span>importing<span class="w"> </span>it<span class="w"> </span>later.<span class="w"> </span>The<span class="w"> </span><span class="sb">`</span>-Z<span class="w"> </span><span class="m">9</span><span class="sb">`</span><span class="w"> </span>option<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>example<span class="w"> </span>compresses<span class="w"> </span>the<span class="w"> </span>SQL<span class="w"> </span>script<span class="w"> </span>created<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>highest<span class="w"> </span>available<span class="w"> </span>compression<span class="w"> </span>rate<span class="w"> </span><span class="o">(</span><span class="sb">`</span><span class="m">0</span>-9<span class="sb">`</span><span class="o">)</span>.
+
+<span class="sb">```</span>bash
+pg_dump<span class="w"> </span>-h<span class="w"> </span>vmdocker<span class="w"> </span>-U<span class="w"> </span>awx<span class="w"> </span>-d<span class="w"> </span>awx<span class="w"> </span>--create<span class="w"> </span>-f<span class="w"> </span>-Z<span class="w"> </span><span class="m">9</span><span class="w"> </span>/tmp/awx_dump.sql.gz
+</code></pre></div></td></tr></table></div>
+<p>The following command creates a custom archive file from a database specified with <code>-d</code>. To export data in custom format, you have to specify so with the <code>-F c</code> option. Custom file dumps have the benefit, that they are compressed by default.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pg_dump<span class="w"> </span>-h<span class="w"> </span><span class="o">{</span>pg_host<span class="o">}</span><span class="w"> </span>-U<span class="w"> </span><span class="o">{</span>username<span class="o">}</span><span class="w"> </span>-d<span class="w"> </span><span class="o">{</span>database<span class="o">}</span><span class="w"> </span>-F<span class="w"> </span>c<span class="w"> </span>-f<span class="w"> </span>/pg_dump/dumpfile.dmp
+</code></pre></div></td></tr></table></div>
+<p>Custom format files can only be restored by <code>pg_restore</code> (see below). A SQL dump can be restored by using <code>psql</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>psql<span class="w"> </span>-d<span class="w"> </span>newdb<span class="w"> </span>-f<span class="w"> </span>db.sql
+</code></pre></div></td></tr></table></div>
+<p>A complete guide of <code>pg_dump</code> from the official documentation can be found <a href="https://www.postgresql.org/docs/current/app-pgdump.html">here</a>.</p>
+<h4 id="pg_dumpall">pg_dumpall</h4>
+<p>A full dump of all databases of a Postgres instance can be done by <code>pg_dumpall</code>. It will include also user creation information.
+A difference to <code>pg_dump</code>, you cannot choose for different output formats. <code>pg_dumpall</code> will always create a SQL script as output. Therefore,
+you don't need <code>pg_restore</code> for restoring a "full" dump. Only <code>psql</code> is needed (see below).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pg_dumpall<span class="w"> </span>-h<span class="w"> </span><span class="o">{</span>pg_host<span class="o">}</span><span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>&gt;<span class="w"> </span>database.out
+</code></pre></div></td></tr></table></div>
+<p>If you use password authentication it will ask for a password each time. It is convenient to have a <code>~/.pgpass</code> file or <code>PGPASSWORD</code> environment variable set.</p>
+<p>So importing a full dump is really easy by the following <code>psql</code> command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>psql<span class="w"> </span>-h<span class="w"> </span><span class="o">{</span>pg_host<span class="o">}</span><span class="w"> </span>-f<span class="w"> </span>databaseb.out<span class="w"> </span>-U<span class="w"> </span>postgres
+</code></pre></div></td></tr></table></div>
+<p>A complete guide of <code>pg_dumpall</code> from the official documentation can be found <a href="https://www.postgresql.org/docs/current/app-pg-dumpall.html">here</a>.</p>
+<h3 id="pg_restore">pg_restore</h3>
+<p><code>pg_restore</code> can be used to restore custom file dumps created by <code>pg_dump</code>.</p>
+<p>The following command will create the database (which has been dumped before).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pg_restore<span class="w"> </span>-h<span class="w"> </span><span class="o">{</span>pg_host<span class="o">}</span><span class="w"> </span>-U<span class="w"> </span><span class="o">{</span>pg_user<span class="o">}</span><span class="w"> </span>-d<span class="w"> </span>postgres<span class="w"> </span>--create<span class="w"> </span>-F<span class="w"> </span>c<span class="w"> </span>/tmp/db.dmp<span class="w"> </span>-v
+</code></pre></div></td></tr></table></div>
+<p>A complete guide of <code>pg_restore</code> from the official documentation can be found <a href="https://www.postgresql.org/docs/current/app-pgrestore.html">here</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../mysql/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: mysql">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                mysql
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sqlite/" class="md-footer__link md-footer__link--next" aria-label="Weiter: sqlite">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                sqlite
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 rwcloud.ch
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.tabs", "toc.integrate", "content.code.annotation", "content.code.select", "content.code.copy", "content.tabs.link", "navigation.footer", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
