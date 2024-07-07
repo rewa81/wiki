@@ -1,8 +1,16 @@
 # Ansible-Vault
 
 ## Vault Password File
-im Hauptverzeichnis des Repos eine Datei xxxx.vault_pass anlegen (xxxx mit beliebigem Namen ersetzen.
-)
+
+Das Passwordfile lege ich entsprechenden Unterverzeichnis des Verzeichnisses playbooks an. Variable "my secret" mit dem Passwort ersetzen. ACHTUNG: Des Verschlüsselungspasswort im Passwort-Manager ablegen. Da dieses File beim wechseln des Ausführungsservers/Containers manuell erstellt werden muss. Ansonsten können die Ansilbe Vault Variablen nicht mehr entschlüsselt/verschlüsselt werden.
+
+```bash title="Passwortfile erstellen und schützen"
+echo "my secret" > .vault_pass
+
+-- Datei noch schützen
+chmod 600 .vault_pass
+```
+
 
 ## Eine Variable verschlüsseln
 

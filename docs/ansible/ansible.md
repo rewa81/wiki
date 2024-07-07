@@ -2,23 +2,42 @@
 
 ```
 ansible-devcontainer/
-├── .devcontainer/
-├── .secrets/
-├── inventory/
-│   ├── group_vars/
-│   ├── host_vars/
-│   │   ├── vie.yml
-│   │   └── parallels.yml
-│   └── hosts.yml
-├── playbooks/
-│   └── test_connection.yml
-├── roles/
-├── .gitignore
-├── inventory-vie.yml
-├── readme.md
-├── rwcloud.vault_pass
-├── vault.yml
-└── vie-playbook.yml
+├── .devcontainer/ # Dev container configuration (e.g., Dockerfile)
+├── .secrets/ # Secrets management (e.g., encrypted files)
+├── inventory/ # Inventory definition
+│   ├── hosts.yml # Main inventory file
+│   └── groups/
+│       └── group1.yml # Group-specific inventory definitions
+│       └── group2.yml # Another group-specific inventory definition
+│   └── host_vars/
+│       ├── host1.yml
+│       └── host2.yml # Host-specific variable files
+│
+├── playbooks/ # Playbook directory (main entry points for your infrastructure)
+│   └── environment-1/ # Environment-specific playbooks
+│       ├── deploy.yml
+│       └── config.yml
+│   └── environment-2/ # Another environment-specific playbook set
+│       ├── deploy.yml
+│       └── config.yml
+│
+├── roles/ # Roles directory ( reusable pieces of Ansible code)
+│   ├── role1/
+│   │   ├── tasks/
+│   │   │   └── main.yml
+│   │   ├── defaults/
+│   │   │   └── main.yml
+│   │   └── files/
+│   │       └── file
+│   └── role2/
+│       ├── tasks/
+│       │   └── main.yml
+│       ├── defaults/
+│       │   └── main.yml
+│       └── files/
+│           └── file
+│
+├── readme.md # Project documentation and usage information
 ```
 
 
