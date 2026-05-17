@@ -158,4 +158,4 @@ plugins:
 extra:
   generator: false
     
-copyright: Copyright &copy; 2024
+copyright: Copyright &copy; <span id="current-year"></span><script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>

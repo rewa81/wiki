@@ -167,10 +167,12 @@ allow_operations = ["read", "write"]
 [MIT License](https://opensource.org/licenses/MIT) oder spezifizieren:
 
 ```
-Copyright (c) 2024 Dein Name
+Copyright (c) <span id="template-year">2024</span> Dein Name
 
 Permission is hereby granted...
 ```
+
+<script>document.getElementById('template-year').textContent = new Date().getFullYear();</script>
 
 ---
 
