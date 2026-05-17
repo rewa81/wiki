@@ -1,0 +1,12 @@
+[project]
+name = "mkdocs-wiki"
+version = "1.0.0"
+description = "MkDocs Wiki Documentation"
+requires-python = ">=3.11"
+dependencies = [
+    "mkdocs-material==9.7.0",
+    "mkdocs-glightbox",
+]
+
+[tool.uv]
+package = false

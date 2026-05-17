@@ -1,0 +1,161 @@
+site_name: Wiki
+theme:
+  name: 'material'
+  palette:
+    scheme: 'slate'
+    primary: green
+  language: de
+  features:
+    # - navigation.expand
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
+    - content.code.annotation
+    - content.code.select
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+  font:
+    text: Roboto
+    code: Roboto Mono
+  #logo: assets/images/logo.png
+  #favicon: assets/images/favicon.ico
+nav:
+  - Home: index.md
+  - Homelab:
+    - Homlab Aufbau und Strategie:
+      - Aufbau: homelab/aufbau.md
+    - Apps & Dienste:
+      - Reverse Proxy und Webserver:
+        - caddy:
+          - Caddy Einführung: apps/caddy/caddy.md
+          - Mutual TLS: apps/caddy/caddy-mutual-tls.md
+      - Security & Authentication:
+        - Authentik:
+          - Einführung: apps/authentik/authentik_einfuehrung.md
+        - OAuth2-Proxy:
+          - Einführung: apps/oauth2proxy/oauth2proxy_einfuehrung.md
+          - Deployment: apps/oauth2proxy/oauth2proxy_deployment.md
+        - Zitadel: apps/zitadel.md
+      - Weitere Dienste:
+        - bind9: apps/bind9.md
+        - Grafana: apps/grafana.md
+        - Prometheus: apps/prometheus.md
+      - Datenbanken:
+        - mariadb: databases/mariadb.md
+        - mysql: databases/mysql.md
+        - postgres: databases/postgres.md
+        - sqlite: databases/sqlite.md
+  - DevOps:
+    - Einführung: devops/einfuehrung.md
+    - SSH Bastion Host: devops/ssh-bastion.md
+    - Tools:
+      - Ansible:
+        - Einführung: devops/tools/ansible/ansible-einfuehrung.md
+        - Setup:
+          - Ansible im Devcontainer: devops/tools/ansible/devcontainer.md
+          - Ansible-Vault: devops/tools/ansible/ansible-vault.md
+      - Gitea:
+        - Gitea Actions: devops/tools/gitea/gitea_actions.md
+        - Nützliches: devops/tools/gitea/gitea_basics.md
+        - Backup und Restore: devops/tools/gitea/backup_restore.md
+      - GitHub:
+        - Github Codespace: devops/tools/github/codespace.md
+        - Gitub Actions: 
+          - Einführung: devops/tools/github/actions/gha-einfuehrung.md
+        - Merge : 
+          - Merge: github/merge.md
+          - Pull Requests: github/pullrequests.md
+      - CI/CD:
+        - Gitea Actions:
+          - Einführung: devops/tools/github/actions/gha-einfuehrung.md
+        - GitHub Actions: 
+          - Einführung: devops/tools/github/actions/gha-einfuehrung.md
+        - Jenkins:
+          - Einführung: devops/tools/jenkins/jenkins-einfuehrung.md
+        - SonarQube:
+          - Einführung: devops/tools/sonarqube/sonar-einfuehrung.md
+        - acme.sh:
+            - Zertifikats-Erstellung: devops/tools/acme_sh/cert-issue.md
+  
+  - Virtualisierung:
+    - Docker:
+      - docker: virtualisierung/docker/docker.md
+      - docker-compose: virtualisierung/docker/docker-compose.md
+      - docker-desktop: virtualisierung/docker/docker-desktop.md
+      - docker-file: virtualisierung/docker/docker-file.md
+      
+    - Proxmox:
+      - Firewall: virtualisierung/proxmox/firewall.md
+      - Hardening: virtualisierung/proxmox/hardening.md  
+  - Linux:
+    - Distros:
+      - debian: linux/distros/debian.md
+      - fedora: linux/distros/fedora.md
+      - ubuntu:
+        - ubuntu: linux/distros/ubuntu/ubuntu.md
+        - Basis Hardeing: linux/distros/ubuntu/hardening.md
+    - arp: linux/arp.md
+    - awk: linux/awk.md
+    - cron: linux/cron.md
+    - Umgebungsvariablen: linux/environment-variables-in-linux.md
+    - etherwake: linux/etherwake.md
+    - ethtool: linux/ethtool.md
+    - grep: linux/grep.md
+    - iptables: linux/iptables.md
+    - lspci: linux/lspci.md
+    - lvm2: linux/lvm2.md
+    - mount: linux/mount.md
+    - netplan: linux/netplan.md
+    - nfs: linux/nfs.md
+    - sed: linux/sed.md
+    - tailscale-hardening: linux/uff-tailscale-hardening.md
+    - ufw: linux/ufw.md
+    - user: linux/user.md
+  - macOS:
+    - shortcuts: macos/macos-shortcuts.md
+    - setup terminal: macos/setup_terminal.md
+    - sshkey-gen: macos/sshkey-gen.md
+    - VSCode Shortcuts: macos/vscode-macos-shortcuts.md
+    - Python-Setup: macos/python.md
+  - Softwareentwicklung:
+    - Kotlin:
+      - Kotlin Basics: softwareentwicklung/kotlin_basics.md
+      - Kotlin Setup: softwareentwicklung/kotlin_setup.md
+  - Finanzen:
+    - Warren Buffett Kennzahlen: finanzen/warren_buffett_kennzahlen.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - tables
+  - md_in_html
+  - pymdownx.highlight:
+      linenums: true
+      pygments_style: monokai
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  - glightbox
+extra:
+  generator: false
+    
+copyright: Copyright &copy; 2024
